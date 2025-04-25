@@ -1,0 +1,16 @@
+.title {
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+}
+
+.subtitle {
+    font-weight: bold;
+    color: white;
+}
+
+.text-resident {
+    font-style: italic;
+    color: white;
+}

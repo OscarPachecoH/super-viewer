@@ -4,6 +4,7 @@ const cors = require('cors');
 const { PORT } = require('./src/config')
 const loginRoutes = require("./src/routes/login.routes");
 const tokenVerifiRoutes = require("./src/routes/token.routes");
+const project = require("./src/routes/proyect.routes");
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use('/api/', loginRoutes);
 
 app.use('/api/', tokenVerifiRoutes);
+
+app.use('/api/', project)
 
 app.use((req, res, next) => {
     res.status(500).json({

@@ -1,0 +1,18 @@
+.container .card {
+    max-width: "500px"; 
+    width: "100%";
+}
+
+.card-project {
+    background-color: #80ED99 !important;
+}
+
+.btn-submit {
+    background-color: #0B6477;
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: #0d748b;
+    color: white;
+}

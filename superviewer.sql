@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2025 a las 01:29:56
+-- Tiempo de generación: 23-04-2025 a las 21:45:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,62 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `superviewer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `expenses_machines`
+--
+
+CREATE TABLE `expenses_machines` (
+  `id` int(11) NOT NULL,
+  `idProjects` int(11) NOT NULL,
+  `machine` varchar(50) NOT NULL,
+  `amount` double NOT NULL,
+  `totalCost` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `expenses_materials`
+--
+
+CREATE TABLE `expenses_materials` (
+  `id` int(11) NOT NULL,
+  `idProjects` int(11) NOT NULL,
+  `material` varchar(20) NOT NULL,
+  `amount` double NOT NULL,
+  `totalCost` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `expenses_tramits`
+--
+
+CREATE TABLE `expenses_tramits` (
+  `id` int(11) NOT NULL,
+  `idProjects` int(11) NOT NULL,
+  `tramite` varchar(50) NOT NULL,
+  `amount` double NOT NULL,
+  `totalCost` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` int(11) NOT NULL,
+  `owner` int(11) NOT NULL,
+  `project` varchar(100) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `resident` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -41,6 +97,33 @@ CREATE TABLE `users` (
 --
 
 --
+-- Indices de la tabla `expenses_machines`
+--
+ALTER TABLE `expenses_machines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idProjects` (`idProjects`);
+
+--
+-- Indices de la tabla `expenses_materials`
+--
+ALTER TABLE `expenses_materials`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idProjects` (`idProjects`);
+
+--
+-- Indices de la tabla `expenses_tramits`
+--
+ALTER TABLE `expenses_tramits`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idProjects` (`idProjects`);
+
+--
+-- Indices de la tabla `projects`
+--
+ALTER TABLE `projects`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -55,6 +138,28 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `expenses_machines`
+--
+ALTER TABLE `expenses_machines`
+  ADD CONSTRAINT `expenses_machines_ibfk_1` FOREIGN KEY (`idProjects`) REFERENCES `projects` (`id`);
+
+--
+-- Filtros para la tabla `expenses_materials`
+--
+ALTER TABLE `expenses_materials`
+  ADD CONSTRAINT `expenses_materials_ibfk_1` FOREIGN KEY (`idProjects`) REFERENCES `projects` (`id`);
+
+--
+-- Filtros para la tabla `expenses_tramits`
+--
+ALTER TABLE `expenses_tramits`
+  ADD CONSTRAINT `expenses_tramits_ibfk_1` FOREIGN KEY (`idProjects`) REFERENCES `projects` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

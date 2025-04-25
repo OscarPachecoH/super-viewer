@@ -1,5 +1,5 @@
 body {
-  background-color: #006DA4;
+  background-color: #213A57;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* 
+Azul Marino => #213A57 =>	Fondo principal, navbar, login
+Azul Teal =>	#0B6477	=> Botones primarios, headers
+Cian Medio =>	#14919B =>	Hover en botones o íconos activos
+Cian Claro =>	#0AD1C8 =>	Elementos interactivos, acentos
+Verde Claro =>	#45DFB1 =>	Estados exitosos (mensaje enviado...)
+Verde Pastel =>	#80ED99 =>	Fondo de tarjetas o hover sutil */
