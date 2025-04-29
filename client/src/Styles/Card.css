@@ -4,7 +4,11 @@
 }
 
 .card-project {
-    background-color: #80ED99 !important;
+    background-color: #80ED99 ;
+}
+
+.card-title, .card-text {
+    color: #213A57;
 }
 
 .btn-submit {
