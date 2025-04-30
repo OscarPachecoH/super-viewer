@@ -1,9 +1,11 @@
 const { Router } = require('express');
-const { login, register } =  require('../controllers/loginController');
+const { login, register, changePassword } =  require('../controllers/loginController');
 
 const router = Router();
 
 router.post('/login', login);
+
+router.patch('/passwordchange/:id', changePassword);
 
 router.post('/register', register);
 

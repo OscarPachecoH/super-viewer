@@ -4,6 +4,7 @@ import ProtectedRouter from './Components/ProtectedRouter';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import ShowProjects from './Pages/ShowProjects';
+import Profile from './Pages/Profile';
 
 function App() {
 
@@ -18,6 +19,11 @@ function App() {
         <Route path='/login' element={
           <ProtectedRouter requiresAuth={false} redirectTo='/projects'>
             <Login/>
+          </ProtectedRouter>
+        }/>
+        <Route path='/profile' element={
+          <ProtectedRouter requiresAuth={true} redirectTo='/profile'>
+            <Profile/>
           </ProtectedRouter>
         }/>
         <Route path='/projects' element={

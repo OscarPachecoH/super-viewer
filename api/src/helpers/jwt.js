@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const SECRET = 'superviewer-secret-key';
+const SECRET = process.env.JWT_SECRET || 'superviewer-secret-key'; // JWT_SECRET declarado en archivo .env
 
 const createToken = (user) => {
     return jwt.sign({

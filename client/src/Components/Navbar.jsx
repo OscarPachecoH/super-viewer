@@ -44,16 +44,16 @@ const Navbar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-              {location.pathname !== "/projects" && (
+              {location.pathname !== "/projects" && location.pathname !== "/profile" && (
                 <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li className="nav-item me-5">
-                    <Link className="nav-link" to={'/registrar'}><TfiMoney/> Gastos</Link>
+                    <Link className="nav-link" to={'/expenses'}><TfiMoney/> Expenses</Link>
                   </li>
                   <li className="nav-item me-5">
-                    <Link className="nav-link" to={'/casar'}><FaClipboardList /> Registros</Link>
+                    <Link className="nav-link" to={'/graphics'}><FaClipboardList /> Graphics</Link>
                   </li>
                   <li className="nav-item me-5">
-                    <Link className="nav-link" to={'/casar'}><FaClipboard/> Bitacora</Link>
+                    <Link className="nav-link" to={'/evidences'}><FaClipboard/> Evidences</Link>
                   </li>
                 </ul>
               )}
@@ -64,9 +64,9 @@ const Navbar = () => {
                     {user.name} {user.surnamePaternal} {user.surnameMaternal}
                   </a>
                   <ul className="dropdown-menu">
-                    <li><Link className="dropdown-item"><FaUser/> Perfil</Link></li>
+                    <li><Link className="dropdown-item" to={'/profile'}><FaUser/> Profile</Link></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><Link className="dropdown-item" onClick={handleLogout}><span><FaRightFromBracket /> Cerrar sesión</span></Link></li>
+                    <li><Link className="dropdown-item" onClick={handleLogout}><span><FaRightFromBracket /> Log out</span></Link></li>
                   </ul>
                 </li>
               </ul>
