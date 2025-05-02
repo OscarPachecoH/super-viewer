@@ -5,6 +5,8 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import ShowProjects from './Pages/ShowProjects';
 import Profile from './Pages/Profile';
+import Expenses from './Pages/Expenses';
+import NotFound from './Pages/NotFound';
 
 function App() {
 
@@ -22,7 +24,7 @@ function App() {
           </ProtectedRouter>
         }/>
         <Route path='/profile' element={
-          <ProtectedRouter requiresAuth={true} redirectTo='/profile'>
+          <ProtectedRouter requiresAuth={true}>
             <Profile/>
           </ProtectedRouter>
         }/>
@@ -36,7 +38,23 @@ function App() {
             <Dashboard/>
           </ProtectedRouter>
         }/>
-        <Route path="/" element={<Navigate to="/projects" />} />
+        <Route path='/dashboard/:projectId/expenses' element={
+          <ProtectedRouter requiresAuth={true}>
+            <Expenses />
+          </ProtectedRouter>
+        }/>
+        <Route path='/dashboard/:projectId/graphics' element={
+          <ProtectedRouter requiresAuth={true}>
+            <Expenses />
+          </ProtectedRouter>
+        }/>
+        <Route path='/dashboard/:projectId/evidences' element={
+          <ProtectedRouter requiresAuth={true}>
+            <Expenses />
+          </ProtectedRouter>
+        }/>
+        <Route path="/" element={<Navigate to="/projects" />} /> //Redirige a la vista projects pero si no hay usuario autentificado manda a login
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
   )
