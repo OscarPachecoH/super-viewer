@@ -3,7 +3,6 @@ import { useAuth } from "../Context/AuthContext";
 import Navbar from "../Components/Navbar";
 import Spinner from "../Components/SpinnerLoading";
 import Card from "../Components/Card";
-import '../Styles/Styles.css'
 import projectService from "../Services/projectService";
 
 const ShowProjects = () => {

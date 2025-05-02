@@ -4,7 +4,9 @@ const Evidences = () => {
     return (
         <>
             <Navbar/>
-            <h1>Página de evidencias</h1>
+            <h1 className="title">Página de evidencias</h1>
         </>
     );
 }
+
+export default Evidences;

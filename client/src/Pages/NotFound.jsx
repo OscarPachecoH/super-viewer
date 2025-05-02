@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import '../Styles/Styles.css'
 
 const NotFound = () => (
     <div className="text-center mt-10">

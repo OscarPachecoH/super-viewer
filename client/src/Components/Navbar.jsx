@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../Context/AuthContext";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { FaRightFromBracket, FaHouse, FaClipboardList, FaClipboard, FaUser } from "react-icons/fa6";
 import { TfiMoney } from "react-icons/tfi";
@@ -11,6 +11,7 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { projectId } = useParams();
   const location = useLocation();
 
   const handleLogout = async () => {
@@ -32,6 +33,8 @@ const Navbar = () => {
     }
   };
 
+  const isProjectRoute = location.pathname.startsWith('/dashboard');
+
   return (
     <>
       {isLoading && <Spinner />}
@@ -44,16 +47,16 @@ const Navbar = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-              {location.pathname !== "/projects" && location.pathname !== "/profile" && (
+              {location.pathname !== "/projects" && location.pathname !== "/profile" && isProjectRoute && projectId && (
                 <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                   <li className="nav-item me-5">
-                    <Link className="nav-link" to={'/expenses'}><TfiMoney/> Expenses</Link>
+                    <Link className="nav-link" to={`/dashboard/${projectId}/expenses`}><TfiMoney /> Expenses</Link>
                   </li>
                   <li className="nav-item me-5">
-                    <Link className="nav-link" to={'/graphics'}><FaClipboardList /> Graphics</Link>
+                    <Link className="nav-link" to={`/dashboard/${projectId}/graphics`}><FaClipboardList /> Graphics</Link>
                   </li>
                   <li className="nav-item me-5">
-                    <Link className="nav-link" to={'/evidences'}><FaClipboard/> Evidences</Link>
+                    <Link className="nav-link" to={`/dashboard/${projectId}/evidences`}><FaClipboard /> Evidences</Link>
                   </li>
                 </ul>
               )}
@@ -64,7 +67,7 @@ const Navbar = () => {
                     {user.name} {user.surnamePaternal} {user.surnameMaternal}
                   </a>
                   <ul className="dropdown-menu">
-                    <li><Link className="dropdown-item" to={'/profile'}><FaUser/> Profile</Link></li>
+                    <li><Link className="dropdown-item" to={'/profile'}><FaUser /> Profile</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><Link className="dropdown-item" onClick={handleLogout}><span><FaRightFromBracket /> Log out</span></Link></li>
                   </ul>

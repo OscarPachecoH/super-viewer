@@ -4,7 +4,7 @@ const Graphics = () => {
     return (
         <>
             <Navbar />
-            <h1>Página de graficas de avances</h1>
+            <h1 className="title">Página de graficas de avances</h1>
         </>
     );
 }

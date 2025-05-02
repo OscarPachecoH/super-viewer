@@ -2,7 +2,6 @@ import { changePassword } from "../Services/authService";
 import Navbar from "../Components/Navbar";
 import { useEffect, useState } from "react";
 import { useAuth } from "../Context/AuthContext";
-import '../Styles/Styles.css';
 
 const Profile = () => {
     const [formData, setFormData] = useState({

@@ -4,7 +4,7 @@ const Expenses = () => {
     return (
         <>
             <Navbar />
-            <h1>Página de Gastos de la obra</h1>
+            <h1 className="title">Página de Gastos de la obra</h1>
         </>
     );
 }
