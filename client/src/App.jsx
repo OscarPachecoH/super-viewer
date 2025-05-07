@@ -5,9 +5,6 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import ShowProjects from './Pages/ShowProjects';
 import Profile from './Pages/Profile';
-import Expenses from './Pages/Expenses';
-import Graphics from './Pages/Graphics';
-import Evidenses from './Pages/Evidences';
 import NotFound from './Pages/NotFound';
 import './Styles/Styles.css'
 
@@ -41,23 +38,8 @@ function App() {
             <Dashboard/>
           </ProtectedRouter>
         }/>
-        <Route path='/dashboard/:projectId/expenses' element={
-          <ProtectedRouter requiresAuth={true}>
-            <Expenses />
-          </ProtectedRouter>
-        }/>
-        <Route path='/dashboard/:projectId/graphics' element={
-          <ProtectedRouter requiresAuth={true}>
-            <Graphics />
-          </ProtectedRouter>
-        }/>
-        <Route path='/dashboard/:projectId/evidences' element={
-          <ProtectedRouter requiresAuth={true}>
-            <Evidenses />
-          </ProtectedRouter>
-        }/>
         <Route path="/" element={<Navigate to="/projects" />} /> //Redirige a la vista projects pero si no hay usuario autentificado manda a login
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="*" element={<NotFound/>}/> //Si el usuario coloca mal la URL muestra esta vista
       </Routes>
     </BrowserRouter>
   )
