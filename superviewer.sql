@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-04-2025 a las 21:45:01
+-- Tiempo de generación: 09-05-2025 a las 20:16:37
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,6 +35,11 @@ CREATE TABLE `expenses_machines` (
   `totalCost` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `expenses_machines`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +54,11 @@ CREATE TABLE `expenses_materials` (
   `totalCost` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `expenses_materials`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -59,8 +69,36 @@ CREATE TABLE `expenses_tramits` (
   `id` int(11) NOT NULL,
   `idProjects` int(11) NOT NULL,
   `tramite` varchar(50) NOT NULL,
-  `amount` double NOT NULL,
   `totalCost` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `expenses_tramits`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `floors_advance`
+--
+
+CREATE TABLE `floors_advance` (
+  `id` int(11) NOT NULL,
+  `idPiso` int(11) NOT NULL,
+  `totalAdvance` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `floors_projects`
+--
+
+CREATE TABLE `floors_projects` (
+  `id` int(11) NOT NULL,
+  `idProject` int(11) NOT NULL,
+  `numPiso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -77,6 +115,10 @@ CREATE TABLE `projects` (
   `resident` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `projects`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +133,11 @@ CREATE TABLE `users` (
   `email` varchar(30) NOT NULL,
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
 
 --
 -- Índices para tablas volcadas
@@ -118,10 +165,25 @@ ALTER TABLE `expenses_tramits`
   ADD KEY `idProjects` (`idProjects`);
 
 --
+-- Indices de la tabla `floors_advance`
+--
+ALTER TABLE `floors_advance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idPiso` (`idPiso`);
+
+--
+-- Indices de la tabla `floors_projects`
+--
+ALTER TABLE `floors_projects`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idProject` (`idProject`);
+
+--
 -- Indices de la tabla `projects`
 --
 ALTER TABLE `projects`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `owner` (`owner`);
 
 --
 -- Indices de la tabla `users`
@@ -137,7 +199,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -160,6 +222,24 @@ ALTER TABLE `expenses_materials`
 --
 ALTER TABLE `expenses_tramits`
   ADD CONSTRAINT `expenses_tramits_ibfk_1` FOREIGN KEY (`idProjects`) REFERENCES `projects` (`id`);
+
+--
+-- Filtros para la tabla `floors_advance`
+--
+ALTER TABLE `floors_advance`
+  ADD CONSTRAINT `floors_advance_ibfk_1` FOREIGN KEY (`idPiso`) REFERENCES `floors_projects` (`id`);
+
+--
+-- Filtros para la tabla `floors_projects`
+--
+ALTER TABLE `floors_projects`
+  ADD CONSTRAINT `floors_projects_ibfk_1` FOREIGN KEY (`idProject`) REFERENCES `projects` (`id`);
+
+--
+-- Filtros para la tabla `projects`
+--
+ALTER TABLE `projects`
+  ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
